@@ -19,6 +19,21 @@ RUN dpkg --add-architecture i386
 
 # Setup Linux base environment
 RUN apt-get update --fix-missing && apt-get upgrade -y
-RUN apt-get install -q -y autoconf automake build-essential libtool make perl subversion wget zlib1g-dev libatlas3-base 
+RUN apt-get install -q -y autoconf automake build-essential \
+	git libtool libatlas3-base make python perl subversion \
+	wget zlib1g-dev zip 
+
+WORKDIR /usr/local/src
+RUN wget https://github.com/kaldi-asr/kaldi/archive/master.zip
+RUN unzip master.zip && mv kaldi-master kaldi && rm master.zip
+
+WORKDIR /usr/local/src/kaldi/tools
+RUN ./extras/check_dependencies.sh
+RUN make
+
+WORKDIR /usr/local/src/kaldi/src
+RUN ./configure
+RUN make depend
+RUN make
 
 CMD bash
