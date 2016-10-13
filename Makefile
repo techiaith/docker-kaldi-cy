@@ -2,7 +2,7 @@ default: run
 
 run : build
 
-	docker run --name kaldi-env -i -t techiaith/kaldi-env bash
+	docker run --name kaldi-env -it techiaith/kaldi-env bash
 
 build:
 	docker build --rm -t techiaith/kaldi-env .

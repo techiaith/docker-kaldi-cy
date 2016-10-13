@@ -33,4 +33,8 @@ RUN mkdir -p data && \
 	mkdir -p data/local/train && \
 	mkdir -p data/local/test
 
+ADD *.sh ./
+RUN ln -s /usr/local/src/kaldi/egs/wsj/s5/utils utils
+RUN ln -s /usr/local/src/kaldi/egs/wsj/s5/steps steps
+
 CMD bash
