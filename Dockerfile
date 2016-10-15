@@ -21,20 +21,7 @@ WORKDIR /usr/local/src/kaldi/egs
 RUN mkdir -p paldaruo_welsh
 WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh
 
-RUN mkdir -p paldaruo_audio && \
-	mkdir -p paldaruo_audio/train && \
-	mkdir -p paldaruo_audio/test 
-
-RUN mkdir -p data && \
-	mkdir -p data/train && \
-	mkdir -p data/test && \
-	mkdir -p data/local && \
-	mkdir -p data/local/dict && \
-	mkdir -p data/local/train && \
-	mkdir -p data/local/test
-
-ADD *.sh ./
-RUN ln -s /usr/local/src/kaldi/egs/wsj/s5/utils utils
-RUN ln -s /usr/local/src/kaldi/egs/wsj/s5/steps steps
+ADD egs/paldaruo_welsh/*.sh ./
+ADD egs/paldaruo_welsh/*.py ./
 
 CMD bash
