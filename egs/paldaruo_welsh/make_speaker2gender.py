@@ -22,3 +22,6 @@ for row in metadata_file:
 
 	except:
 		continue
+
+spk2gender_file.close()
+
