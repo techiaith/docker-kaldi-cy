@@ -1,4 +1,3 @@
-#
 # Copyright 2016 Prifysgol Bangor University
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +11,10 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
-#
-FROM techiaith/kaldi-env-base-irstlm 
+FROM techiaith/kaldi-env-base
 MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor
 
-WORKDIR /usr/local/src/kaldi/egs
-
-RUN mkdir -p paldaruo_welsh
-WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh
-
-ADD egs/paldaruo_welsh/*.sh ./
-ADD egs/paldaruo_welsh/*.py ./
+WORKDIR /usr/local/src/kaldi/tools
+RUN ./extras/install_irstlm.sh
 
 CMD bash
