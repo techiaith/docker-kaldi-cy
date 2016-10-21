@@ -12,4 +12,4 @@ wget -P ${DEST} -N -nd -c -e robots=off -A txt,lexicon -r -np ${DATA_SRC} || \
  { echo "WGET error"'!' ; exit 1 ; }
  
 
-mv ${DEST}/cym.lexicon ${DEST}/lexicon
+mv ${DEST}/cym.lexicon ${DEST}/lexicon.txt
