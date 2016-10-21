@@ -36,4 +36,7 @@ RUN ./configure
 RUN make depend
 RUN make
 
+WORKDIR /usr/local/src/kaldi/egs/yesno/s5
+RUN ./run.sh
+
 CMD bash

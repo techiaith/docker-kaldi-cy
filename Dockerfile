@@ -24,4 +24,6 @@ WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh
 ADD egs/paldaruo_welsh/*.sh ./
 ADD egs/paldaruo_welsh/*.py ./
 
+ADD egs/paldaruo_welsh/conf/* ./
+
 CMD bash
