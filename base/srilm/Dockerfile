@@ -1,4 +1,3 @@
-#
 # Copyright 2016 Prifysgol Bangor University
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,18 +11,13 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
-#
-FROM techiaith/kaldi-env-base-srilm
+FROM techiaith/kaldi-env-base
 MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor
 
-WORKDIR /usr/local/src/kaldi/egs
+RUN apt-get update && apt-get install -y gawk
 
-RUN mkdir -p paldaruo_welsh
-WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh
-
-ADD egs/paldaruo_welsh/*.sh ./
-ADD egs/paldaruo_welsh/*.py ./
-
-ADD egs/paldaruo_welsh/conf/* ./
+WORKDIR /usr/local/src/kaldi/tools
+COPY srilm-1.7.1.tar.gz srilm.tgz
+RUN ./extras/install_srilm.sh
 
 CMD bash

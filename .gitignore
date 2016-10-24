@@ -1,3 +1,4 @@
+base/srilm/*.tar.gz
 egs/paldaruo_welsh/data/*
 egs/paldaruo_welsh/mfcc/*
 egs/paldaruo_welsh/exp/*
