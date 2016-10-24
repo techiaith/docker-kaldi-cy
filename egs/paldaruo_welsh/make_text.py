@@ -17,7 +17,7 @@ with open(data_dir + "/samples.txt",'rb') as prompts_file:
 		
 def make_text_file(source, destination):
 
-	text_file = open('data/train/text','w')
+	text_file = open(destination + '/text','w')
 	metadata_file = csv.DictReader(open(source))
 	for row in metadata_file:
 		speaker = row['uid']
