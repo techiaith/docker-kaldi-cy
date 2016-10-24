@@ -7,6 +7,7 @@ phoneset = set()
 optional_phoneset = set()
 
 phoneset.add('sil')
+phoneset.add('SPN')
 optional_phoneset.add('sil')
 
 dest_dir = 'data/local/dict'

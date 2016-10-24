@@ -10,6 +10,7 @@ command -v wget >/dev/null 2>&1 ||\
 echo "--- Starting data download ..."
 wget -P ${DEST} -N -nd -c -e robots=off -A txt,lexicon -r -np ${DATA_SRC} || \
  { echo "WGET error"'!' ; exit 1 ; }
- 
+
 cat ${DEST}/cym.lexicon | uniq > ${DEST}/lexicon.txt
+echo "<UNK> SPN" >> ${DEST}/lexicon.txt 
 rm ${DEST}/cym.lexicon
