@@ -7,7 +7,6 @@ DATA_SRC="http://techiaith.cymru/corpws/Paldaruo/"
 
 source utils/parse_options.sh
 
-
 # Check if the executables needed for this script are present in the system
 command -v wget >/dev/null 2>&1 ||\
  { echo "\"wget\" is needed but not found"'!'; exit 1; }
@@ -22,5 +21,5 @@ for a in ${DATA_ROOT}/*.zip; do
   unzip -d ${DATA_ROOT} $a
 done
 
-rm -rf ${DATA_ROOT}/*.zip
+#rm -rf ${DATA_ROOT}/*.zip
 

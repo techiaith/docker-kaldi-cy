@@ -8,7 +8,7 @@ phoneset_add = phoneset.add
 
 dest_dir = 'data/local/dict'
 
-with open(dest_dir + '/lexicon','rb') as lex:
+with open(dest_dir + '/lexicon.txt','rb') as lex:
 
     for line in lex:
         (key, val) = line.split(' ',1)
