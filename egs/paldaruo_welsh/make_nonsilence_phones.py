@@ -21,6 +21,7 @@ sorted_phones = sorted(phoneset, key=lambda s: s.lower())
 
 with open(dest_dir + '/nonsilence_phones.txt','w') as nonsilence:
     for phone in sorted_phones:
+	if phone=='SPN': continue
         nonsilence.write(phone + '\n')
 
 str_phones = ', '.join(sorted_phones)
