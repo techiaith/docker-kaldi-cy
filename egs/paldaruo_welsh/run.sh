@@ -3,8 +3,8 @@
 . ./path.sh || exit 1
 . ./cmd.sh || exit 1
 
-nj=1       # number of parallel jobs - 1 is perfect for such a small data set
-lm_order=1 # language model order (n-gram quantity) - 1 is enough for digits grammar
+nj=3       # number of parallel jobs - 1 is perfect for such a small data set
+lm_order=3 # language model order (n-gram quantity) - 1 is enough for digits grammar
 
 # Safety mechanism (possible running this script with modified arguments)
 . utils/parse_options.sh || exit 1
