@@ -6,7 +6,6 @@
 nj=1       # number of parallel jobs - 1 is perfect for such a small data set
 cpus=`nproc`
 cpus=`expr $cpus - 1`
-echo $cpus
 if (($cpus > 1)); then
        nj=$cpus 
 fi
@@ -18,7 +17,7 @@ lm_order=3 # language model order (n-gram quantity) - 1 is enough for digits gra
 [[ $# -ge 1 ]] && { echo "Wrong arguments!"; exit 1; } 
 
 # Removing previously created data (from last run.sh execution)
-rm -rf exp mfcc data/train/spk2utt data/train/cmvn.scp data/train/feats.scp data/train/split1 data/test/spk2utt data/test/cmvn.scp data/test/feats.scp data/test/split1 data/local/lang data/lang data/local/tmp data/local/dict/lexiconp.txt
+rm -rf exp mfcc data/train/spk2utt data/train/cmvn.scp data/train/feats.scp data/train/split* data/test/spk2utt data/test/cmvn.scp data/test/feats.scp data/test/split* data/local/lang data/lang data/local/tmp data/local/dict/lexiconp.txt
 
 echo
 echo "===== PREPARING ACOUSTIC DATA ====="
