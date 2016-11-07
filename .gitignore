@@ -6,3 +6,4 @@ egs/paldaruo_welsh/exp/*
 egs/paldaruo_welsh/paldaruo_audio/*
 egs/paldaruo_welsh/utils
 egs/paldaruo_welsh/steps
+egs/paldaruo_welsh/test_*/*

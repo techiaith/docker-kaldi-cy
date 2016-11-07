@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os
+import os, codecs
 
 
 def get_directory_structure(rootdir):
@@ -17,3 +17,16 @@ def get_directory_structure(rootdir):
         parent[folders[-1]] = subdir
 
     return dir
+
+def get_prompts(sourcefile):
+    """
+    Creates a dictionary of sample ids to prompt texts
+    """
+    prompts = {}
+    with codecs.open(sourcefile,'rb','utf-8') as prompts_file:
+        for line in prompts_file:
+            elements = line.rstrip().split(' ',1)
+            key = elements[0].replace('*/','')
+            prompts[key]=elements[1]
+
+    return prompts
