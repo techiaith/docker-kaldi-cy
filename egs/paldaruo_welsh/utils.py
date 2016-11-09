@@ -16,8 +16,10 @@ def get_directory_structure(rootdir):
         parent = reduce(dict.get, folders[:-1], dir)
         parent[folders[-1]] = subdir
 
-    return dir
+    topdirname = dir.iterkeys().next()
+    return dir[topdirname]
 
+	
 def get_prompts(sourcefile):
     """
     Creates a dictionary of sample ids to prompt texts

@@ -1,37 +1,32 @@
 #!/usr/bin/env python
-import os, path, utils, csv
+import os, path, utils, csv, codecs
+
+def make_text_file(source_dir, meta_file, prompts_file, destination):
+
+	audio_data_files = utils.get_directory_structure(source_dir)
+	prompts = utils.get_prompts(os.path.join(source_dir,prompts_file))
+	
+	text_file = codecs.open(destination + '/text','w', encoding='utf-8')
+	metadata_file = csv.DictReader(open(os.path.join(source_dir,meta_file)))
+
+	for row in metadata_file:
+		speaker = row['uid']
+		if (os.path.isdir(source_dir + "/" + speaker)):
+			for promptId,text in prompts.iteritems():
+				wavfile=promptId + '.wav'
+				if wavfile in audio_data_files[speaker]:
+					fileid = speaker + "_" + promptId
+					print fileid , repr(text) #text.encode('utf-8')
+					text_file.write(fileid + ' ' + text + '\n')			
+
+	text_file.close()
 
 data_dir = path.get_var('path.sh','DATA_ROOT')
+testdata_dir = path.get_var('path.sh','TEST_ROOT')
 
 train_dir = 'data/train'
 test_dir = 'data/test'
 
-audio_data_files = utils.get_directory_structure(data_dir)
-
-prompts = {}
-with open(data_dir + "/samples.txt",'rb') as prompts_file:
-	for line in prompts_file:
-		elements = line.rstrip().split(' ',1)
-		key = elements[0].replace('*/','')
-		prompts[key]=elements[1]	
-		
-def make_text_file(source, destination):
-
-	text_file = open(destination + '/text','w')
-	metadata_file = csv.DictReader(open(source))
-	for row in metadata_file:
-		speaker = row['uid']
-		if (os.path.isdir(data_dir + "/" + speaker)):
-			for wav in audio_data_files['paldaruo_audio'][speaker]:
-				if (wav.startswith("silence")): continue
-				wav_noext = wav.split('.')[0]
-				fileid = speaker + "_" + wav_noext
-				text = prompts[wav_noext]
-				print fileid + "\t" + text
-				text_file.write(fileid + ' ' + text + '\n')			
-
-	text_file.close()
-
-make_text_file(data_dir + '/training.csv', train_dir)
-make_text_file(data_dir + '/testing.csv', test_dir)
+make_text_file(data_dir, 'metadata.csv', 'samples.txt', train_dir)
+make_text_file(testdata_dir, 'metadata.csv', 'samples.txt', test_dir)
 

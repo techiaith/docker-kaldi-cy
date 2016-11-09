@@ -1,30 +1,30 @@
 #!/usr/bin/env python
 import os, path, utils, csv
 
-data_dir = path.get_var('path.sh','DATA_ROOT')
+def make_wavscp_file(source_dir, meta_file, destination):
 
-train_dir = 'data/train'
-test_dir = 'data/test'
-
-audio_data_files = utils.get_directory_structure(data_dir)
-
-def make_wavscp_file(source, destination):
-
+	audio_data_files = utils.get_directory_structure(source_dir)
 	wavscp_file = open(destination + '/wav.scp','w')
-	metadata_file = csv.DictReader(open(source))
+	metadata_file = csv.DictReader(open(os.path.join(source_dir, meta_file)))
 	
 	for row in metadata_file:
 		speaker = row['uid']	
-		if (os.path.isdir(data_dir + "/" + speaker)):
-			for wav in audio_data_files['paldaruo_audio'][speaker]:
+		if (os.path.isdir(source_dir + "/" + speaker)):
+			for wav in audio_data_files[speaker]:
 				if (wav.startswith("silence")): continue
 				fileid = speaker + "_" + wav.split('.')[0]
-				absolutepath = data_dir + "/" + speaker + "/" + wav
+				absolutepath = source_dir + "/" + speaker + "/" + wav
 				print fileid + " " + absolutepath	
 				wavscp_file.write(fileid + " " + absolutepath + "\n")
 
 	wavscp_file.close()
 
-make_wavscp_file(data_dir + '/training.csv', train_dir)
-make_wavscp_file(data_dir + '/testing.csv', test_dir)
+data_dir = path.get_var('path.sh','DATA_ROOT')
+testdata_dir = path.get_var('path.sh','TEST_ROOT')
+
+train_dir = 'data/train'
+test_dir = 'data/test'
+
+make_wavscp_file(data_dir, 'metadata.csv', train_dir)
+make_wavscp_file(testdata_dir, 'metadata.csv', test_dir)
 

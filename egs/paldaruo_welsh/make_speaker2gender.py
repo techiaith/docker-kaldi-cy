@@ -2,6 +2,7 @@
 import os, csv, path
 
 data_dir = path.get_var('path.sh','DATA_ROOT')
+testdata_dir = path.get_var('path.sh','TEST_ROOT')
 
 train_dir = 'data/train'
 test_dir = 'data/test'
@@ -23,6 +24,6 @@ def make_spk2gender_file(source, destination):
 
 	spk2gender_file.close()
 
-make_spk2gender_file(data_dir + '/training.csv', train_dir)
-make_spk2gender_file(data_dir + '/testing.csv', test_dir)
+make_spk2gender_file(data_dir + '/metadata.csv', train_dir)
+make_spk2gender_file(testdata_dir + '/metadata.csv', test_dir)
 

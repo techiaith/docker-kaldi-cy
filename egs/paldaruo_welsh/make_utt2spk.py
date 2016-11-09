@@ -1,22 +1,16 @@
 #!/usr/bin/env python
 import os, path, utils, csv
 
-data_dir = path.get_var('path.sh','DATA_ROOT')
+def make_utt2spk_file(source_dir, meta_file, destination):
 
-train_dir = 'data/train'
-test_dir = 'data/test'
-
-audio_data_files = utils.get_directory_structure(data_dir)
-
-def make_utt2spk_file(source, destination):
-	
+	audio_data_files = utils.get_directory_structure(source_dir)	
 	utt2spk_file = open(destination + '/utt2spk','w')
-	metadata_file = csv.DictReader(open(source))
+	metadata_file = csv.DictReader(open(os.path.join(source_dir,meta_file)))
 
 	for row in metadata_file:
 		speaker = row['uid']
-		if (os.path.isdir(data_dir + "/" + speaker)):
-			for wav in audio_data_files['paldaruo_audio'][speaker]:
+		if (os.path.isdir(source_dir + "/" + speaker)):
+			for wav in audio_data_files[speaker]:
 				if (wav.startswith("silence")): continue
 				fileid = speaker + "_" + wav.split('.')[0]
 				print fileid + " " + speaker	
@@ -24,5 +18,12 @@ def make_utt2spk_file(source, destination):
 
 	utt2spk_file.close()
 
-make_utt2spk_file(data_dir + '/training.csv', train_dir)
-make_utt2spk_file(data_dir + '/testing.csv', test_dir)
+data_dir = path.get_var('path.sh','DATA_ROOT')
+testdata_dir = path.get_var('path.sh','TEST_ROOT')
+
+train_dir = 'data/train'
+test_dir = 'data/test'
+
+make_utt2spk_file(data_dir, 'metadata.csv', train_dir)
+make_utt2spk_file(testdata_dir, 'metadata.csv', test_dir)
+

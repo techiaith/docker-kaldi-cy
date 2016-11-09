@@ -21,7 +21,8 @@ RUN dpkg --add-architecture i386
 RUN apt-get update --fix-missing && apt-get upgrade -y
 RUN apt-get install -q -y autoconf automake build-essential \
 	git libtool libatlas3-base make python perl subversion \
-	wget zlib1g-dev zip 
+	wget zlib1g-dev zip vim \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/local/src
 RUN wget https://github.com/kaldi-asr/kaldi/archive/master.zip

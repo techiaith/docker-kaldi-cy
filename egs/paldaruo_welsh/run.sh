@@ -3,13 +3,12 @@
 . ./path.sh || exit 1
 . ./cmd.sh || exit 1
 
-nj=1       # number of parallel jobs - 1 is perfect for such a small data set
+#nj=1       # number of parallel jobs - 1 is perfect for such a small data set
 cpus=`nproc`
 cpus=`expr $cpus - 1`
 if (($cpus > 1)); then
        nj=$cpus 
 fi
-
 lm_order=3 # language model order (n-gram quantity) - 1 is enough for digits grammar
 
 # Safety mechanism (possible running this script with modified arguments)
@@ -111,7 +110,7 @@ echo "===== MONO DECODING ====="
 echo
 
 utils/mkgraph.sh --mono data/lang exp/mono exp/mono/graph || exit 1
-steps/decode.sh --config conf/decode.config --nj $nj --cmd "$decode_cmd" exp/mono/graph data/test exp/mono/decode
+steps/decode.sh --config conf/decode.config --nj 1 --cmd "$decode_cmd" exp/mono/graph data/test exp/mono/decode
 
 echo
 echo "===== MONO ALIGNMENT =====" 
@@ -130,7 +129,7 @@ echo "===== TRI1 (first triphone pass) DECODING ====="
 echo
 
 utils/mkgraph.sh data/lang exp/tri1 exp/tri1/graph || exit 1
-steps/decode.sh --config conf/decode.config --nj $nj --cmd "$decode_cmd" exp/tri1/graph data/test exp/tri1/decode
+steps/decode.sh --config conf/decode.config --nj 1 --cmd "$decode_cmd" exp/tri1/graph data/test exp/tri1/decode
 
 echo
 echo "===== run.sh script is finished ====="
