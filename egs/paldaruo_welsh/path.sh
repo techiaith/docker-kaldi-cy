@@ -9,6 +9,8 @@ export PATH=$PWD/utils/:$KALDI_ROOT/tools/openfst/bin/:$KALDI_ROOT/src/fstbin/:$
 export DATA_ROOT=`pwd`/paldaruo_audio   
 export TEST_ROOT=`pwd`/test_audio
 
+export TGT_MODELS=`pwd`/trained_models
+
 if [ -z $DATA_ROOT ]; then
   echo "You need to set \"DATA_ROOT\" variable in path.sh to point to the directory to host VoxForge's data"
   exit 1
