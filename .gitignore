@@ -7,3 +7,5 @@ egs/paldaruo_welsh/paldaruo_audio/*
 egs/paldaruo_welsh/utils
 egs/paldaruo_welsh/steps
 egs/paldaruo_welsh/test_*/*
+egs/paldaruo_welsh/trained_models/*
+egs/paldaruo_welsh/exp_*/*

@@ -152,7 +152,7 @@ echo
 echo "===== Train and decode tri2b [LDA+MLLT] ====="
 echo
 steps/train_lda_mllt.sh --cmd "$train_cmd" 2000 11000 data/train data/lang exp/tri1_ali exp/tri2b || exit 1;
-utils/mkgraph.sh data/lang exp/tri2b exp/tri2b/graph || exit 1
+utils/mkgraph.sh data/lang exp/tri2b exp/tri2b/graph || exit 1;
 steps/decode.sh --config conf/decode.config --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b/decode
 
 
@@ -163,7 +163,7 @@ steps/align_si.sh --nj $nj --cmd "$train_cmd" --use-graphs true data/train data/
 
 
 echo
-echo "===== Do MMI on top of LDA+MLLT. ====="
+echo "===== Do MMI on top of LDA+MLLT. (tri2b_mmi)====="
 echo
 steps/make_denlats.sh --nj $nj --cmd "$train_cmd" data/train data/lang exp/tri2b exp/tri2b_denlats || exit 1;
 steps/train_mmi.sh data/train data/lang exp/tri2b_ali exp/tri2b_denlats exp/tri2b_mmi || exit 1;
@@ -171,49 +171,57 @@ steps/decode.sh --config conf/decode.config --iter 4 --nj 1 --cmd "$decode_cmd" 
 steps/decode.sh --config conf/decode.config --iter 3 --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b_mmi/decode_it3
 
 
-
-echo
-echo "===== Do the same with boosting. ====="
-echo
-steps/train_mmi.sh --boost 0.05 data/train data/lang exp/tri2b_ali exp/tri2b_denlats exp/tri2b_mmi_b0.05 || exit 1;
-steps/decode.sh --config conf/decode.config --iter 4 --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b_mmi_b0.05/decode_it4 || exit 1;
-steps/decode.sh --config conf/decode.config --iter 3 --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b_mmi_b0.05/decode_it3 || exit 1;
-
-
-
-echo
-echo "===== Do MPE ====="
-echo
-steps/train_mpe.sh data/train data/lang exp/tri2b_ali exp/tri2b_denlats exp/tri2b_mpe || exit 1;
-steps/decode.sh --config conf/decode.config --iter 4 --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b_mpe/decode_it4 || exit 1;
-steps/decode.sh --config conf/decode.config --iter 3 --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b_mpe/decode_it3 || exit 1;
-
-
-
-echo
-echo "===== Do LDA+MLLT+SAT, and decode. ====="
-echo
-steps/train_sat.sh 2000 11000 data/train data/lang exp/tri2b_ali exp/tri3b || exit 1;
-utils/mkgraph.sh data/lang exp/tri3b exp/tri3b/graph || exit 1;
-steps/decode_fmllr.sh --config conf/decode.config --nj 1 --cmd "$decode_cmd" exp/tri3b/graph data/test exp/tri3b/decode || exit 1;
-
-
-
-echo
-echo "===== Align all data with LDA+MLLT+SAT system (tri3b) ====="
-echo
-steps/align_fmllr.sh --nj $nj --cmd "$train_cmd" --use-graphs true data/train data/lang exp/tri3b exp/tri3b_ali || exit 1;
-
-
-
 echo 
 echo "====== find portions of data that has bad alignments. So we can filter them out.  "
 echo 
-steps/cleanup/find_bad_utts.sh --nj $nj --cmd "$train_cmd" data/train data/lang exp/tri3b_ali exp/tri3b_cleanup
-head  exp/tri3b_cleanup/all_info.sorted.txt
+steps/cleanup/find_bad_utts.sh --nj $nj --cmd "$train_cmd" data/train data/lang exp/tri2b_mmi exp/tri2b_mmi_cleanup
+head  exp/tri2b_mmi_cleanup/all_info.sorted.txt
 
 
 
+
+#echo
+#echo "===== Do the same with boosting. ====="
+#echo
+#steps/train_mmi.sh --boost 0.05 data/train data/lang exp/tri2b_ali exp/tri2b_denlats exp/tri2b_mmi_b0.05 || exit 1;
+#steps/decode.sh --config conf/decode.config --iter 4 --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b_mmi_b0.05/decode_it4 || exit 1;
+#steps/decode.sh --config conf/decode.config --iter 3 --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b_mmi_b0.05/decode_it3 || exit 1;
+#
+#
+#
+#echo
+#echo "===== Do MPE ====="
+#echo
+#steps/train_mpe.sh data/train data/lang exp/tri2b_ali exp/tri2b_denlats exp/tri2b_mpe || exit 1;
+#steps/decode.sh --config conf/decode.config --iter 4 --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b_mpe/decode_it4 || exit 1;
+#steps/decode.sh --config conf/decode.config --iter 3 --nj 1 --cmd "$decode_cmd" exp/tri2b/graph data/test exp/tri2b_mpe/decode_it3 || exit 1;
+#
+#
+#
+#echo
+#echo "===== Do LDA+MLLT+SAT, and decode. ====="
+#echo
+#steps/train_sat.sh 2000 11000 data/train data/lang exp/tri2b_ali exp/tri3b || exit 1;
+#utils/mkgraph.sh data/lang exp/tri3b exp/tri3b/graph || exit 1;
+#steps/decode_fmllr.sh --config conf/decode.config --nj 1 --cmd "$decode_cmd" exp/tri3b/graph data/test exp/tri3b/decode || exit 1;
+#
+#
+#
+#echo
+#echo "===== Align all data with LDA+MLLT+SAT system (tri3b) ====="
+#echo
+#steps/align_fmllr.sh --nj $nj --cmd "$train_cmd" --use-graphs true data/train data/lang exp/tri3b exp/tri3b_ali || exit 1;
+#
+#
+#
+#echo 
+#echo "====== find portions of data that has bad alignments. So we can filter them out.  "
+#echo 
+#steps/cleanup/find_bad_utts.sh --nj $nj --cmd "$train_cmd" data/train data/lang exp/tri3b_ali exp/tri3b_cleanup
+#head  exp/tri3b_cleanup/all_info.sorted.txt
+#
+#
+#
 #echo
 #echo "===== MMI on top of tri3b (i.e. LDA+MLLT+SAT+MMI) ====="
 #echo
