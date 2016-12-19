@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 import os, path, utils, csv
 
+data_dir = path.get_var('path.sh','DATA_ROOT')
+testdata_dir = path.get_var('path.sh','TEST_ROOT')
+kaldidata_dir = path.get_var('path.sh','KALDI_DATA_ROOT')
+
+train_dir =  os.path.join(kaldidata_dir,'train')
+test_dir = os.path.join(kaldidata_dir, 'test')
+
 def make_utt2spk_file(source_dir, meta_file, destination):
 
 	audio_data_files = utils.get_directory_structure(source_dir)	
@@ -17,12 +24,6 @@ def make_utt2spk_file(source_dir, meta_file, destination):
 				utt2spk_file.write(fileid + " " + speaker + "\n")
 
 	utt2spk_file.close()
-
-data_dir = path.get_var('path.sh','DATA_ROOT')
-testdata_dir = path.get_var('path.sh','TEST_ROOT')
-
-train_dir = 'data/train'
-test_dir = 'data/test'
 
 make_utt2spk_file(data_dir, 'metadata.csv', train_dir)
 make_utt2spk_file(testdata_dir, 'metadata.csv', test_dir)

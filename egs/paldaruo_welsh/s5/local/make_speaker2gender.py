@@ -3,11 +3,13 @@ import os, csv, path
 
 data_dir = path.get_var('path.sh','DATA_ROOT')
 testdata_dir = path.get_var('path.sh','TEST_ROOT')
+kaldidata_dir = path.get_var('path.sh','KALDI_DATA_ROOT')
 
-train_dir = 'data/train'
-test_dir = 'data/test'
+train_dir =  os.path.join(kaldidata_dir,'train')
+test_dir = os.path.join(kaldidata_dir, 'test')
 
 def make_spk2gender_file(source, destination):
+
 	print 'make_spk2gender(' + source + ', ' + destination + ')'
 
 	spk2gender_file = open(destination + '/spk2gender.map','w')
@@ -19,7 +21,7 @@ def make_spk2gender_file(source, destination):
 			gender= 'f'
 		else: 
 			gender= 'm'
-		print speaker + ' ' + gender + ' (' + str(gender_cy) + ')'
+		#print speaker + ' ' + gender + ' (' + str(gender_cy) + ')'
 		spk2gender_file.write(speaker + ' ' + gender + '\n')
 
 	spk2gender_file.close()

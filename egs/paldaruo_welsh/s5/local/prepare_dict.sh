@@ -1,5 +1,5 @@
 #!/bin/bash
 
-./make_nonsilence_phones.py
-./make_silencephones.py
-./make_extraquestions.py
+./local/make_nonsilence_phones.py
+./local/make_silencephones.py
+./local/make_extraquestions.py

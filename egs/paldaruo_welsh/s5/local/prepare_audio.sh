@@ -1,9 +1,9 @@
 #!/bin/bash
 
-rm -rf /data/train
-rm -rf /data/test
+rm -rf $KALDI_DATA_ROOT/train/*
+rm -rf $KALDI_DATA_ROOT/test/*
 
-./make_speaker2gender.py
-./make_utt2spk.py
-./make_wavscp.py
-./make_text.py
+./local/make_speaker2gender.py
+./local/make_utt2spk.py
+./local/make_wavscp.py
+./local/make_text.py

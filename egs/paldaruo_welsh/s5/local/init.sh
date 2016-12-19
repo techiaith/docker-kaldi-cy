@@ -1,14 +1,12 @@
-mkdir -p paldaruo_audio 
-mkdir -p paldaruo_audio/train
-mkdir -p paldaruo_audio/test
+source ./path.sh
 
-mkdir -p data
-mkdir -p data/train
-mkdir -p data/test
-mkdir -p data/local
-mkdir -p data/local/dict
-mkdir -p data/local/train
-mkdir -p data/local/test
+mkdir -p $DATA_ROOT/train
+mkdir -p $DATA_ROOT/test
+
+mkdir -p $KALDI_LEXICON_ROOT
+
+mkdir -p $KALDI_DATA_ROOT/train
+mkdir -p $KALDI_DATA_ROOT/test
 
 ln -s /usr/local/src/kaldi/egs/wsj/s5/utils utils
 ln -s /usr/local/src/kaldi/egs/wsj/s5/steps steps
