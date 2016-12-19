@@ -1,14 +1,14 @@
-
 Ynghylch Corpws Lleferydd Paldaruo
 ----------------------------------
-Dyma corpws lleferydd Cymraeg a chasglwyd drwy ddulliau torfoli'r ap Paldaruo. Gweler:
+Dyma gorpws lleferydd Cymraeg a chasglwyd drwy ddulliau torfoli'r ap Paldaruo. Gweler:
 
 http://techiaith.cymru/corpora/paldaruo/
 
-Mae'r corpws ar gael drwy'r trwydded agored CC-BY.
+Mae'r corpws ar gael drwy'r drwydded agored CC-BY.
 
-Mae'r sgriptiau a chyfarwyddiadau ar gyfer ei ddefnyddio i hyfforddi modelau 
-acwstig Kaldi ar gael o fewn s5
+Mae'r sgriptiau a chyfarwyddiadau ar gyfer ei ddefnyddio i hyfforddi modelau acwstig 
+Kaldi ar gael o fewn s5
+
 
 
 
