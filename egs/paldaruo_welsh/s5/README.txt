@@ -21,8 +21,7 @@ Defnyddiwch y gorchmynion canlynol i baratoi popeth ar gyfer y cam olaf:
 $ ./local/prepare_audio.sh
 $ ./local/prepare_dict.sh
 
-Defnyddiwch y gorchmynyn hon er mwyn creu modelau acwstig ac iaith. Mae'r sgript yn 
-cymryd
+Defnyddiwch y gorchymyn hwn er mwyn creu modelau acwstig ac iaith:
 
 $ ./run.sh
 
