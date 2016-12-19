@@ -21,13 +21,15 @@ RUN apt-get update && apt-get install -y graphviz ghostscript \
 
 WORKDIR /usr/local/src/kaldi/egs
 
-RUN mkdir -p paldaruo_welsh
-WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh
+RUN mkdir -p paldaruo_welsh/s5/local
+WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh/s5
 
-ADD egs/paldaruo_welsh/*.sh ./
-ADD egs/paldaruo_welsh/*.py ./
+ADD egs/paldaruo_welsh/s5/conf/* ./
+ADD egs/paldaruo_welsh/s5/*.sh ./
 
-ADD egs/paldaruo_welsh/conf/* ./
+WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh/s5/local
+ADD egs/paldaruo_welsh/s5/local/*.sh ./
+ADD egs/paldaruo_welsh/s5/local/*.py ./
 
 CMD bash
 

@@ -1,14 +1,13 @@
 #!/usr/bin/env python
-
-import os,sets
+import os,sets, path
 from argparse import ArgumentParser
+
+dest_dir = path.get_var('path.sh','KALDI_LEXICON_ROOT')
 
 phoneset = set()
 phoneset_add = phoneset.add
 
-dest_dir = 'data/local/dict'
-
-with open(dest_dir + '/lexicon.txt','rb') as lex:
+with open(os.path.join(dest_dir,'lexicon.txt'),'rb') as lex:
 
     for line in lex:
         (key, val) = line.split(' ',1)
@@ -19,10 +18,11 @@ with open(dest_dir + '/lexicon.txt','rb') as lex:
 
 sorted_phones = sorted(phoneset, key=lambda s: s.lower())
 
-with open(dest_dir + '/nonsilence_phones.txt','w') as nonsilence:
+with open(os.path.join(dest_dir,'nonsilence_phones.txt'),'w') as nonsilence:
     for phone in sorted_phones:
 	if phone=='SPN': continue
         nonsilence.write(phone + '\n')
 
 str_phones = ', '.join(sorted_phones)
 print str_phones
+
