@@ -1,4 +1,3 @@
-# kaldi-env
 
 Dyma broject Docker sy'n darparu amgylchedd hwylus a chaeth ar gyfer hyfforddi 
 modelau ar gyfer adnabod lleferydd Cymraeg gyda Kaldi.
