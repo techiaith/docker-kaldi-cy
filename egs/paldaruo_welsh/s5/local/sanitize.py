@@ -43,6 +43,7 @@ def sanitize_file(infile, outfile, **args):
 
 			tokens_out_string = ' '.join(tokens_out)
 			tokens_out_string = tokens_out_string.replace(" ' ","'")
+			tokens_out_string = '<s> %s </s>' % tokens_out_string
 
 			if write_to_file:
 				print tokens_out_string

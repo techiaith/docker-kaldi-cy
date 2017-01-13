@@ -14,7 +14,7 @@ Mae angen corpws testun ar gyfer hyfforddi model iaith y parth ar gyfer defnyddi
 adnabod lleferydd. Mae corpws o gwestiynau prototeip cynorthwyydd digidol Macsen 
 gyda ffeiliau sail ar gyfer profi ar gael. Defnyddiwch y gorchmynyn canlynol i'w estyn:
 
-$ ./local/getlanguagemodel.sh -e Macsen 
+$ ./local/getlanguagecorpus.sh -e Macsen 
 
 Defnyddiwch y gorchmynion canlynol i baratoi popeth ar gyfer y cam olaf: 
 
