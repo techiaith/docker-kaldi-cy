@@ -21,5 +21,7 @@ for a in ${DATA_ROOT}/*.zip; do
   unzip -d ${DATA_ROOT} $a
 done
 
-#rm -rf ${DATA_ROOT}/*.zip
+rm -rf ${DATA_ROOT}/*.zip
+
+source ./local/downsample.sh
 
