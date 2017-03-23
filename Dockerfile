@@ -16,7 +16,7 @@
 FROM techiaith/kaldi-env-base-srilm
 MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor
 
-RUN apt-get update && apt-get install -y graphviz ghostscript \
+RUN apt-get update && apt-get install -y graphviz ghostscript sox \
  	&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/local/src/kaldi/egs

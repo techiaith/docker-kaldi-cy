@@ -30,3 +30,5 @@ tar -zxf ${TEST_ROOT}/${NAME}.tar.gz --directory ${TEST_ROOT}
 
 python ./local/make_corpus_txt.py 
 
+source ./local/downsample_test.sh
+
