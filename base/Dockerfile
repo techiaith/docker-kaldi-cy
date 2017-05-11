@@ -18,10 +18,11 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN dpkg --add-architecture i386
 
 # Setup Linux base environment
-RUN apt-get update --fix-missing && apt-get upgrade -y
-RUN apt-get install -q -y autoconf automake build-essential \
+RUN apt-get update \ 
+    && apt-get install -q -y autoconf automake build-essential \
 	git libtool libatlas3-base make python perl subversion \
 	wget zlib1g-dev zip vim \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/local/src

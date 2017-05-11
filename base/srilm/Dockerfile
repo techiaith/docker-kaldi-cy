@@ -15,7 +15,9 @@ FROM techiaith/kaldi-env-base
 MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor
 
 RUN apt-get update && apt-get install -y gawk \
+	&& apt-get clean \
  	&& rm -rf /var/lib/apt/lists/*
+
 WORKDIR /usr/local/src/kaldi/tools
 COPY srilm-1.7.1.tar.gz srilm.tgz
 RUN ./extras/install_srilm.sh

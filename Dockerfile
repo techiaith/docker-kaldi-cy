@@ -17,19 +17,22 @@ FROM techiaith/kaldi-env-base-srilm
 MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor
 
 RUN apt-get update && apt-get install -y graphviz ghostscript sox \
- 	&& rm -rf /var/lib/apt/lists/*
+	&& apt-get clean \
+ 	&& rm -rf /var/lib/apt/lists/* \
 
-WORKDIR /usr/local/src/kaldi/egs
+#WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh
 
-RUN mkdir -p paldaruo_welsh/s5/local
-WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh/s5
+#RUN mkdir -p paldaruo_welsh/s5/local
 
-ADD egs/paldaruo_welsh/s5/conf/* ./
-ADD egs/paldaruo_welsh/s5/*.sh ./
+#WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh/s5
 
-WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh/s5/local
-ADD egs/paldaruo_welsh/s5/local/*.sh ./
-ADD egs/paldaruo_welsh/s5/local/*.py ./
+#ADD egs/paldaruo_welsh/s5/conf/* ./
+#ADD egs/paldaruo_welsh/s5/*.sh ./
+
+#WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh/s5/local
+
+#ADD egs/paldaruo_welsh/s5/local/*.sh ./
+#ADD egs/paldaruo_welsh/s5/local/*.py ./
 
 CMD bash
 

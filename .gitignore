@@ -9,3 +9,4 @@ egs/paldaruo_welsh/s5/steps
 egs/paldaruo_welsh/s5/test_*/*
 egs/paldaruo_welsh/s5/trained_models/*
 egs/paldaruo_welsh/s5/exp_*/*
+egs/owainpennar_welsh/*
