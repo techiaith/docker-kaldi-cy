@@ -1,8 +1,8 @@
 default: build
 
 build:
-	docker build --rm -t techiaith/kaldi-env-base .
+	docker build --rm -t techiaith/kaldi-base .
 
 clean: 
-	docker rmi techiaith/kaldi-env-base
+	docker rmi techiaith/kaldi-base
 

@@ -11,8 +11,8 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
-FROM techiaith/kaldi-env-base
-MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor
+FROM techiaith/kaldi-base
+MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor University
 
 RUN apt-get update && apt-get install -y gawk \
 	&& apt-get clean \

@@ -1,8 +1,8 @@
 default: build
 
 build:
-	docker build --rm -t techiaith/kaldi-env-base-srilm .
+	docker build --rm -t techiaith/kaldi-base-srilm .
 
 clean: 
-	docker rmi techiaith/kaldi-env-base-srilm
+	docker rmi techiaith/kaldi-base-srilm
 

@@ -13,7 +13,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #
-FROM techiaith/kaldi-env-base-srilm
+FROM techiaith/kaldi-base-srilm
 MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor
 
 RUN apt-get update && apt-get install -y graphviz ghostscript sox \

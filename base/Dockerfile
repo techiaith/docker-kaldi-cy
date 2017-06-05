@@ -12,7 +12,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 FROM ubuntu:16.04
-MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor
+MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor University
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN dpkg --add-architecture i386
@@ -37,8 +37,5 @@ WORKDIR /usr/local/src/kaldi/src
 RUN ./configure
 RUN make depend
 RUN make
-
-WORKDIR /usr/local/src/kaldi/egs/yesno/s5
-RUN ./run.sh
 
 CMD bash
