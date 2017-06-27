@@ -23,3 +23,4 @@ COPY srilm-1.7.1.tar.gz srilm.tgz
 RUN ./extras/install_srilm.sh
 
 CMD bash
+

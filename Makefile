@@ -6,7 +6,7 @@ run :
 build:
 	docker build --rm -t techiaith/kaldi .
 
-clean: stop
+clean: 
 	docker rmi techiaith/kaldi
 
 stop:

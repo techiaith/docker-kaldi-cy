@@ -16,23 +16,11 @@
 FROM techiaith/kaldi-base-srilm
 MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor
 
-RUN apt-get update && apt-get install -y graphviz ghostscript sox \
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
+	&& apt-get update && apt-get install -y graphviz ghostscript sox git-lfs \
 	&& apt-get clean \
+	&& git lfs install \
  	&& rm -rf /var/lib/apt/lists/* \
-
-#WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh
-
-#RUN mkdir -p paldaruo_welsh/s5/local
-
-#WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh/s5
-
-#ADD egs/paldaruo_welsh/s5/conf/* ./
-#ADD egs/paldaruo_welsh/s5/*.sh ./
-
-#WORKDIR /usr/local/src/kaldi/egs/paldaruo_welsh/s5/local
-
-#ADD egs/paldaruo_welsh/s5/local/*.sh ./
-#ADD egs/paldaruo_welsh/s5/local/*.py ./
 
 CMD bash
 

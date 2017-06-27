@@ -1,3 +1,4 @@
+#
 # Copyright 2016 Prifysgol Bangor University
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,8 +12,13 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
+#
 FROM ubuntu:16.04
 MAINTAINER Uned Technolegau Iaith, Prifysgol Bangor University
+
+ARG NCPUS
+ENV NCPUS $NCPUS
+RUN echo $NCPUS
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN dpkg --add-architecture i386
@@ -21,21 +27,22 @@ RUN dpkg --add-architecture i386
 RUN apt-get update \ 
     && apt-get install -q -y autoconf automake build-essential \
 	git libtool libatlas3-base make python perl subversion \
-	wget zlib1g-dev zip vim \
+	wget curl zlib1g-dev zip vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/local/src
-RUN wget https://github.com/kaldi-asr/kaldi/archive/master.zip
-RUN unzip master.zip && mv kaldi-master kaldi && rm master.zip
+RUN wget https://github.com/kaldi-asr/kaldi/archive/5.1.zip
+RUN unzip 5.1.zip && mv kaldi-5.1 kaldi && rm 5.1.zip
 
 WORKDIR /usr/local/src/kaldi/tools
 RUN ./extras/check_dependencies.sh
-RUN make
+RUN make -j $NCPUS
 
 WORKDIR /usr/local/src/kaldi/src
 RUN ./configure
 RUN make depend
-RUN make
+RUN make -j $NCPUS
 
 CMD bash
+
