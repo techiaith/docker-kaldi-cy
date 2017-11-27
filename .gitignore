@@ -1,5 +1,6 @@
 *.pyc
 base/srilm/*.tar.gz
+RESULTS/*
 egs/paldaruo_welsh/s5/data/*
 egs/paldaruo_welsh/s5/mfcc/*
 egs/paldaruo_welsh/s5/exp/*

@@ -20,7 +20,7 @@ RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.d
 	&& apt-get update && apt-get install -y graphviz ghostscript sox git-lfs \
 	&& apt-get clean \
 	&& git lfs install \
- 	&& rm -rf /var/lib/apt/lists/* \
+ 	&& rm -rf /var/lib/apt/lists/* 
 
 CMD bash
 
