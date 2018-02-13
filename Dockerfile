@@ -22,5 +22,7 @@ RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.d
 	&& git lfs install \
  	&& rm -rf /var/lib/apt/lists/* 
 
+WORKDIR /usr/local/src/kaldi/
+
 CMD bash
 
